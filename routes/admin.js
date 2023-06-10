@@ -19,7 +19,7 @@ router.post('/',(req,res,next)=>{
         password:req.body.password
     })
     .then(result=>{
-        res.send(' Info Added to database')
+        return res.json({success:true,message:"Sign up successful"})
     })
     .catch(err=>{
         console.log(err)
