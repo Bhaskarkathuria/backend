@@ -6,6 +6,11 @@ const bodyParser=require('body-parser');
 const app=express();
 const cors=require('cors');
 const userRoutes=require('./routes/login')
+const expenseRoutes=require('./routes/expense')
+const userinfo=require('./model/user')
+const expense=require('./model/expensemodel')
+
+
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -16,8 +21,15 @@ app.get('/',(req,res,next)=>{
 
 app.use('/signup',adminRoutes)
 app.use('/login',userRoutes)
+app.use('/expenses',expenseRoutes)
 
-sequelize.sync()
+
+userinfo.hasMany(expense);
+expense.belongsTo(userinfo);
+
+
+
+sequelize.sync({alter:true})
 .then(result=>{
     console.log(result)
     app.listen(5000);
@@ -25,3 +37,6 @@ sequelize.sync()
 .catch(error=>{
     console.log(error)
 })
+
+
+
