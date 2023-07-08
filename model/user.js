@@ -20,6 +20,16 @@ const User=sequelize.define('userInfo',{
     password:{
         type:Sequelize.STRING,
         allowNull:false
+    },
+    isPremiumuser:{
+        type:Sequelize.BOOLEAN,
+        allowNull:false
+
+    },
+     totalexpense:{
+        type:Sequelize.INTEGER,
+        allowNull:false,
+        defaultValue:0
     }
 });
 

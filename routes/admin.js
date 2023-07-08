@@ -5,8 +5,8 @@ const User=require('../model/user');
 const user=require('../model/user');
 const bcrypt=require('bcrypt')
 
-
 router.post('/',(req,res,next)=>{
+    console.log(req.body)
     const email=req.body.email
     user.findOne({where:{email}})
     .then(existingUser=>{
@@ -22,7 +22,8 @@ router.post('/',(req,res,next)=>{
                             user.create({
                 name:req.body.name,
                 email:req.body.email,
-                password:hash
+                password:hash,
+                isPremiumuser:false
         
     })
     .then(result=>{
